@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0f1f1b;
+  --ink-soft: #16302a;
+  --cream: #f7f4ee;
+  --cream-dim: #ece6d9;
+  --brass: #b08d4f;
+  --brass-light: #d4b878;
+  --charcoal: #22201c;
+  --sage: #7c8f80;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-cream: var(--cream);
+  --color-cream-dim: var(--cream-dim);
+  --color-brass: var(--brass);
+  --color-brass-light: var(--brass-light);
+  --color-charcoal: var(--charcoal);
+  --color-sage: var(--sage);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-fraunces), serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal-up 0.7s ease-out both;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
