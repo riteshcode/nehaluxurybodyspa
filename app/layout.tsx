@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { brand, branches } from "@/lib/data";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -33,6 +34,9 @@ export const metadata: Metadata = {
     "couple spa Delhi",
     "best spa Delhi NCR",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Neha Luxury Body Spa",
     description:
@@ -41,6 +45,20 @@ export const metadata: Metadata = {
     siteName: "Neha Luxury Body Spa",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", // TODO: add this image to /public (1200x630px recommended)
+        width: 1200,
+        height: 630,
+        alt: "Neha Luxury Body Spa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Neha Luxury Body Spa",
+    description: "Premium body massage and wellness rituals across Delhi NCR.",
+    images: ["/og-image.jpg"], // TODO: same image as above
   },
 };
 
@@ -49,9 +67,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Organization schema — helps Google understand all branches under one brand
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: brand.name,
+    url: "https://nehaluxurybodyspa.in",
+    logo: "https://nehaluxurybodyspa.in/logo.png", // TODO: update once logo is finalized
+    telephone: brand.phone,
+    email: brand.email,
+    sameAs: [
+      brand.social.whatsapp,
+      // add Instagram/Facebook URLs here once available
+    ],
+    department: branches.map((b) => ({
+      "@type": "DaySpa",
+      name: `${brand.name} - ${b.area}`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: b.address,
+        addressLocality: b.city,
+        addressCountry: "IN",
+      },
+      telephone: b.phone,
+    })),
+  };
+
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Navbar />
         {children}
         <Footer />
