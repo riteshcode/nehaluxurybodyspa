@@ -22,7 +22,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nehaluxurybodyspa.in"),
   title: {
-    default: "Neha Luxury Body Spa | Premium Spa & Massage in Delhi NCR",
+    default: "Neha Luxury Body Spa | Spa & Massage in Delhi NCR",
     template: "%s | Neha Luxury Body Spa",
   },
   description:
