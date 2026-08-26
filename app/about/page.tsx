@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { brand, branches, services } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about Neha Luxury Body Spa, Delhi NCR's trusted name in premium body massage and wellness rituals across multiple branches.",
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
 };
 
 const values = [
