@@ -229,7 +229,7 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: "benefits-of-regular-body-massage",
-    title: "Benefits of Regular Body Massage for Stress Relief",
+    title: "Benefits of Regular Body Massage",
     excerpt:
       "How consistent massage therapy helps your body and mind recover from daily stress — and why once-in-a-while isn't enough.",
     category: "Wellness",
@@ -245,7 +245,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "full-body-vs-deep-tissue-massage",
-    title: "Full Body Massage vs Deep Tissue: Which One Do You Need?",
+    title: "Full Body vs Deep Tissue Massage",
     excerpt:
       "Not all massages are the same. Here's how to tell which technique actually matches what your body needs right now.",
     category: "Guide",
@@ -261,7 +261,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "couple-massage-wellness-date",
-    title: "Why Couple Massage Is the Perfect Wellness Date",
+    title: "Couple Massage: The Perfect Wellness Date",
     excerpt:
       "Skip the usual dinner-and-movie routine. Here's why a shared spa session makes for a genuinely different kind of date.",
     category: "Lifestyle",
@@ -276,7 +276,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "signs-your-body-needs-a-massage",
-    title: "5 Signs Your Body Is Telling You It Needs a Massage",
+    title: "5 Signs Your Body Needs a Massage",
     excerpt:
       "Tension doesn't always show up as pain. These quieter signals are worth paying attention to before they become bigger problems.",
     category: "Wellness",
@@ -293,7 +293,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "thai-massage-101",
-    title: "Thai Massage 101: History, Technique and Benefits",
+    title: "Thai Massage 101: History & Benefits",
     excerpt:
       "A guide to one of the oldest massage traditions in the world — what makes it different, and who it's best suited for.",
     category: "Guide",
@@ -309,7 +309,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-often-should-you-get-a-massage",
-    title: "How Often Should You Get a Massage? A Complete Guide",
+    title: "How Often Should You Get a Massage?",
     excerpt:
       "The right frequency depends on your lifestyle, stress levels and goals — here's a practical framework to figure out yours.",
     category: "Guide",

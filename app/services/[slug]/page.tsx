@@ -134,7 +134,7 @@ export default async function ServicePage({
           />
 
           <h2 className="mt-10 font-display text-2xl text-ink">
-            About this ritual
+            About the {service.name}
           </h2>
           <p className="mt-4 leading-relaxed text-charcoal/80">
             {service.description}

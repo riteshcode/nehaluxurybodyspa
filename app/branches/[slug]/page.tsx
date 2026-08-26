@@ -128,7 +128,7 @@ export default async function BranchPage({
           </p>
 
           <h2 className="mt-10 font-display text-2xl text-ink">
-            Popular services at this branch
+            Popular services at our {branch.area} branch
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {services.slice(0, 4).map((s) => (
