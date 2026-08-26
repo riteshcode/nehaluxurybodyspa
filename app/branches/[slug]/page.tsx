@@ -4,6 +4,7 @@ import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { branches, services, brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export function generateStaticParams() {
   return branches.map((b) => ({ slug: b.slug }));
@@ -20,7 +21,7 @@ export async function generateMetadata({
 
   const title = `Spa in ${branch.area}, ${branch.city}`;
   const description = `${brand.name} in ${branch.area} offers body massage, couple spa and wellness rituals. ${branch.address}. Call ${branch.phone} to book.`;
-  const url = `https://nehaluxurybodyspa.in/branches/${branch.slug}`;
+  const url = `${SITE_URL}/branches/${branch.slug}`;
 
   return {
     title,
@@ -66,7 +67,7 @@ export default async function BranchPage({
     "@context": "https://schema.org",
     "@type": "DaySpa",
     name: `${brand.name} - ${branch.area}`,
-    image: "https://nehaluxurybodyspa.in/og-image.jpg", // TODO: branch-specific photo
+    image: `${SITE_URL}/og-image.jpg`, // TODO: branch-specific photo
     address: {
       "@type": "PostalAddress",
       streetAddress: branch.address,
@@ -81,7 +82,7 @@ export default async function BranchPage({
     telephone: branch.phone,
     openingHours: branch.hours,
     areaServed: branch.city,
-    url: `https://nehaluxurybodyspa.in/branches/${branch.slug}`,
+    url: `${SITE_URL}/branches/${branch.slug}`,
     priceRange: "₹₹",
   };
 

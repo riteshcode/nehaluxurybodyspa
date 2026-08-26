@@ -4,6 +4,8 @@ import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { services, brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
+
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -19,7 +21,7 @@ export async function generateMetadata({
   if (!service) return {};
 
   const description = `${service.description} Book ${service.name} at ${brand.name}, Delhi NCR.`;
-  const url = `https://nehaluxurybodyspa.in/services/${service.slug}`;
+  const url = `${SITE_URL}/services/${service.slug}`;
 
   return {
     title: service.name,

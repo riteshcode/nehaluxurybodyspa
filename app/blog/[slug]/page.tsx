@@ -4,6 +4,8 @@ import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { blogPosts, brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
+
 
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
@@ -18,7 +20,7 @@ export async function generateMetadata({
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
 
-  const url = `https://nehaluxurybodyspa.in/blog/${post.slug}`;
+  const url = `${SITE_URL}/blog/${post.slug}`;
 
   return {
     title: post.title,

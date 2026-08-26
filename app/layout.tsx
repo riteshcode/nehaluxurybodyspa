@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { brand, branches } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -20,7 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nehaluxurybodyspa.in"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Neha Luxury Body Spa | Spa & Massage in Delhi NCR",
     template: "%s | Neha Luxury Body Spa",
@@ -41,13 +42,13 @@ export const metadata: Metadata = {
     title: "Neha Luxury Body Spa",
     description:
       "Premium body massage and wellness rituals across Delhi NCR.",
-    url: "https://nehaluxurybodyspa.in",
+    url: SITE_URL,
     siteName: "Neha Luxury Body Spa",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg", // TODO: add this image to /public (1200x630px recommended)
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Neha Luxury Body Spa",
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Neha Luxury Body Spa",
     description: "Premium body massage and wellness rituals across Delhi NCR.",
-    images: ["/og-image.jpg"], // TODO: same image as above
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -67,18 +68,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Organization schema — helps Google understand all branches under one brand
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: brand.name,
-    url: "https://nehaluxurybodyspa.in",
-    logo: "https://nehaluxurybodyspa.in/logo.png", // TODO: update once logo is finalized
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`, // TODO: update once logo is finalized
     telephone: brand.phone,
     email: brand.email,
     sameAs: [
       brand.social.whatsapp,
-      // add Instagram/Facebook URLs here once available
     ],
     department: branches.map((b) => ({
       "@type": "DaySpa",
