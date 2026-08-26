@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { services, pricingPackages, brand } from "@/lib/data";
 import RippleDivider from "@/components/RippleDivider";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Our Pricing",
   description:
     "Transparent pricing for all body massage and wellness services at Neha Luxury Body Spa, Delhi NCR.",
+  alternates: {
+    canonical: `${SITE_URL}/pricing`,
+  },
 };
 
 const pricingNotes = [
@@ -62,11 +66,10 @@ export default function PricingPage() {
           {pricingPackages.map((p) => (
             <div
               key={p.name}
-              className={`relative rounded-2xl border p-8 ${
-                p.popular
+              className={`relative rounded-2xl border p-8 ${p.popular
                   ? "border-brass bg-ink text-cream"
                   : "border-charcoal/10 bg-white/60"
-              }`}
+                }`}
             >
               {p.popular && (
                 <span className="absolute -top-3 right-6 rounded-full bg-brass px-3 py-1 text-xs font-medium text-ink">
@@ -74,37 +77,32 @@ export default function PricingPage() {
                 </span>
               )}
               <p
-                className={`font-display text-xl ${
-                  p.popular ? "text-cream" : "text-ink"
-                }`}
+                className={`font-display text-xl ${p.popular ? "text-cream" : "text-ink"
+                  }`}
               >
                 {p.name}
               </p>
               <p
-                className={`mt-3 font-display text-3xl ${
-                  p.popular ? "text-brass-light" : "text-brass"
-                }`}
+                className={`mt-3 font-display text-3xl ${p.popular ? "text-brass-light" : "text-brass"
+                  }`}
               >
                 {p.price}
                 <span
-                  className={`ml-2 text-sm ${
-                    p.popular ? "text-cream/50" : "text-charcoal/50"
-                  }`}
+                  className={`ml-2 text-sm ${p.popular ? "text-cream/50" : "text-charcoal/50"
+                    }`}
                 >
                   {p.period}
                 </span>
               </p>
               <ul
-                className={`mt-6 space-y-2 text-sm ${
-                  p.popular ? "text-cream/70" : "text-charcoal/70"
-                }`}
+                className={`mt-6 space-y-2 text-sm ${p.popular ? "text-cream/70" : "text-charcoal/70"
+                  }`}
               >
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
                     <span
-                      className={`mt-1.5 h-1 w-1 shrink-0 rounded-full ${
-                        p.popular ? "bg-brass-light" : "bg-brass"
-                      }`}
+                      className={`mt-1.5 h-1 w-1 shrink-0 rounded-full ${p.popular ? "bg-brass-light" : "bg-brass"
+                        }`}
                     />
                     {f}
                   </li>
@@ -114,11 +112,10 @@ export default function PricingPage() {
                 href={brand.social.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-7 block rounded-full px-6 py-3 text-center text-sm font-medium transition ${
-                  p.popular
+                className={`mt-7 block rounded-full px-6 py-3 text-center text-sm font-medium transition ${p.popular
                     ? "bg-brass text-ink hover:bg-brass-light"
                     : "bg-ink text-cream hover:bg-ink-soft"
-                }`}
+                  }`}
               >
                 Book Now
               </a>
@@ -142,9 +139,8 @@ export default function PricingPage() {
               <a
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className={`flex items-center justify-between gap-6 px-6 py-5 transition hover:bg-brass/5 ${
-                  i !== services.length - 1 ? "border-b border-charcoal/10" : ""
-                }`}
+                className={`flex items-center justify-between gap-6 px-6 py-5 transition hover:bg-brass/5 ${i !== services.length - 1 ? "border-b border-charcoal/10" : ""
+                  }`}
               >
                 <div>
                   <p className="font-display text-lg text-ink">{s.name}</p>

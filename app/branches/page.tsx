@@ -3,11 +3,15 @@ import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { branches, brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Our Branches in Delhi NCR",
   description:
     "Find the Neha Luxury Body Spa branch nearest to you across Delhi NCR, with address, hours and contact details.",
+  alternates: {
+    canonical: `${SITE_URL}/branches`,
+  },
 };
 
 export default function BranchesPage() {

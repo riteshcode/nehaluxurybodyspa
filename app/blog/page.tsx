@@ -3,11 +3,15 @@ import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { blogPosts, brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Wellness tips, massage guides and self-care advice from Neha Luxury Body Spa, Delhi NCR.",
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
 };
 
 function formatDate(iso: string) {

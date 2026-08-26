@@ -3,11 +3,15 @@ import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { services, brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Our Services",
   description:
     "Explore body massage, couple spa, B2B therapy and other wellness rituals at Neha Luxury Body Spa, with transparent pricing.",
+  alternates: {
+    canonical: `${SITE_URL}/services`,
+  },
 };
 
 const trustPoints = [

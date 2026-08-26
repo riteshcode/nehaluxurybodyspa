@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { brand } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description:
     "A glimpse into the calm, private spaces at Neha Luxury Body Spa branches across Delhi NCR.",
+  alternates: {
+    canonical: `${SITE_URL}/gallery`,
+  },
 };
 
 // TODO: Replace each entry's `src` with a real photo path once available,

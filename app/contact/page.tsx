@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import RippleDivider from "@/components/RippleDivider";
 import ContactForm from "@/components/ContactForm";
 import { brand, branches } from "@/lib/data";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Contact & Book Now",
   description:
     "Get in touch with Neha Luxury Body Spa to book a session at your nearest Delhi NCR branch.",
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
 };
 
 export default function ContactPage() {
