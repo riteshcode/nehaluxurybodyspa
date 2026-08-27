@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
+import { getWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 import {
   branches,
   services,
@@ -51,7 +52,7 @@ export default function Home() {
                 Call to Book
               </a>
               <a
-                href={brand.social.whatsapp}
+                href={getWhatsAppUrl(whatsappMessages.general)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-cream/30 px-7 py-3 text-sm text-cream transition hover:border-brass-light hover:text-brass-light"
@@ -60,7 +61,6 @@ export default function Home() {
               </a>
             </div>
 
-            {/* trust strip */}
             <div className="mt-12 flex flex-wrap gap-x-10 gap-y-4 border-t border-cream/10 pt-8">
               <div>
                 <p className="font-display text-3xl text-brass-light">
@@ -79,7 +79,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <p className="font-display text-3xl text-brass-light">10 AM–9 PM</p>
+                <p className="font-display text-3xl text-brass-light">10 AM–10 PM</p>
                 <p className="mt-1 text-xs uppercase tracking-widest text-cream/50">
                   Open all days
                 </p>
@@ -97,13 +97,14 @@ export default function Home() {
               tone="dark"
               priority
               className="h-full min-h-[420px]"
+              src="/images/heropage.jpg"
             />
           </div>
         </div>
       </section>
       <RippleDivider tone="ink" />
 
-      {/* Philosophy strip — signature element */}
+      {/* Philosophy strip */}
       <section className="mx-auto max-w-4xl px-6 py-16 text-center">
         <p className="text-sm uppercase tracking-[0.3em] text-brass">
           Our Philosophy
@@ -142,10 +143,11 @@ export default function Home() {
               className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-cream-dim transition hover:border-brass/40"
             >
               <BrandImage
-                alt={`${s.title} treatment at Neha Luxury Body Spa`}
+                alt={s.title}
                 ratio="square"
                 tone="light"
                 className="rounded-none rounded-t-2xl"
+                src={s.image}
               />
               <p className="p-3 text-center text-sm font-medium text-ink">
                 {s.title}
@@ -155,7 +157,7 @@ export default function Home() {
         </div>
         <div className="mt-8 text-center">
           <a
-            href={brand.social.whatsapp}
+            href={getWhatsAppUrl(whatsappMessages.general)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block rounded-full bg-ink px-7 py-3 text-sm text-cream transition hover:bg-ink-soft"
@@ -191,7 +193,7 @@ export default function Home() {
               className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-white/60 transition hover:border-brass/40 hover:shadow-sm"
             >
               <BrandImage
-                alt={`${s.name} — ${s.duration} massage therapy at Neha Luxury Body Spa`}
+                alt={s.name}
                 ratio="video"
                 tone="light"
                 className="rounded-none"
@@ -230,17 +232,18 @@ export default function Home() {
           </h2>
           <p className="mt-4 max-w-xl text-cream/70">
             Book a luxury massage in Delhi and enjoy our first visit offer.
-            Experience premium massages by expert therapists with a
-            luxurious touch.
+            Experience premium massages by expert therapists with a luxurious
+            touch.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {pricingPackages.map((p) => (
               <div
                 key={p.name}
-                className={`relative rounded-2xl border p-8 ${p.popular
+                className={`relative rounded-2xl border p-8 ${
+                  p.popular
                     ? "border-brass bg-ink-soft"
                     : "border-cream/15 bg-ink-soft/50"
-                  }`}
+                }`}
               >
                 {p.popular && (
                   <span className="absolute -top-3 right-6 rounded-full bg-brass px-3 py-1 text-xs font-medium text-ink">
@@ -250,9 +253,7 @@ export default function Home() {
                 <p className="font-display text-xl text-cream">{p.name}</p>
                 <p className="mt-3 font-display text-3xl text-brass-light">
                   {p.price}
-                  <span className="ml-2 text-sm text-cream/50">
-                    {p.period}
-                  </span>
+                  <span className="ml-2 text-sm text-cream/50">{p.period}</span>
                 </p>
                 <ul className="mt-6 space-y-2 text-sm text-cream/70">
                   {p.features.map((f) => (
@@ -263,7 +264,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <a
-                  href={brand.social.whatsapp}
+                  href={getWhatsAppUrl(whatsappMessages.package(p.name))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-7 block rounded-full bg-brass px-6 py-3 text-center text-sm font-medium text-ink transition hover:bg-brass-light"
@@ -291,7 +292,7 @@ export default function Home() {
               className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white/60"
             >
               <BrandImage
-                alt={`${h.name} hotel spa interior`}
+                alt={h.name}
                 ratio="wide"
                 tone="light"
                 className="rounded-none"
@@ -302,7 +303,7 @@ export default function Home() {
                   {h.description}
                 </p>
                 <a
-                  href={brand.social.whatsapp}
+                  href={getWhatsAppUrl(whatsappMessages.general)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-block text-sm text-brass hover:underline"
@@ -328,7 +329,7 @@ export default function Home() {
             {topLocations.map((loc) => (
               <a
                 key={loc}
-                href={brand.social.whatsapp}
+                href={getWhatsAppUrl(whatsappMessages.location(loc))}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-brass/40 px-5 py-2 text-sm text-ink transition hover:bg-ink hover:text-cream"
@@ -357,7 +358,8 @@ export default function Home() {
                 className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-white/60 transition hover:border-brass/50"
               >
                 <BrandImage
-                  alt={`${brand.name} — ${b.area} branch interior, ${b.city}`}
+                  alt={`${b.area} branch`}
+                  src={b.image}
                   ratio="video"
                   tone="light"
                   className="rounded-none"

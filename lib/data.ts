@@ -9,6 +9,7 @@ export type Branch = {
   intro: string;
   latitude?: number;  // NEW - add real coordinates when available
   longitude?: number; // NEW - add real coordinates when available
+  image?: string;     // NEW - optional image for the branch
 };
 
 export const branches: Branch[] = [
@@ -23,7 +24,8 @@ export const branches: Branch[] = [
     intro:
       "Our Noida branch offers a full range of body massage and wellness rituals in a calm, private setting.",
     latitude: 28.5355,   // TODO: replace with exact branch coordinates
-    longitude: 77.3910,  // TODO: replace with exact branch coordinates
+    longitude: 77.3910,  // TODO: replace with exact branch coordinates,
+    image : "/images/branches/noida.jpg",
   },
   {
     slug: "connaught-place",
@@ -37,6 +39,7 @@ export const branches: Branch[] = [
       "Located in the heart of CP, this branch is a favourite for quick, premium therapy sessions.",
     latitude: 28.6315,
     longitude: 77.2167,
+    image : "/images/branches/connaught-place.jpg",
   },
   {
     slug: "aerocity",
@@ -50,6 +53,7 @@ export const branches: Branch[] = [
       "Our Aerocity branch is trusted by travellers and locals alike for a relaxing session close to the airport.",
     latitude: 28.5562,
     longitude: 77.1180,
+    image : "/images/branches/aerocity.jpeg",
   },
   {
     slug: "dwarka",
@@ -63,6 +67,7 @@ export const branches: Branch[] = [
       "Conveniently located in Dwarka, this branch is known for its deep tissue and couple spa sessions.",
     latitude: 28.5921,
     longitude: 77.0460,
+    image : "/images/branches/dwarka.jpg",
   },
   {
     slug: "gurgaon",
@@ -76,6 +81,7 @@ export const branches: Branch[] = [
       "Our Gurgaon branch brings the full Neha Luxury experience to the corporate hub of NCR.",
     latitude: 28.4595,
     longitude: 77.0266,
+    image : "/images/branches/gurgaon.jpg",
   },
   {
     slug: "karol-bagh",
@@ -89,6 +95,7 @@ export const branches: Branch[] = [
       "A popular branch in Karol Bagh known for traditional massage therapies.",
     latitude: 28.6519,
     longitude: 77.1909,
+    image : "/images/branches/karol-bagh.jpg",
   },
   {
     slug: "green-park",
@@ -102,6 +109,7 @@ export const branches: Branch[] = [
       "Our Green Park branch offers a quiet, upscale setting for premium wellness rituals.",
     latitude: 28.5595,
     longitude: 77.2065,
+    image : "/images/branches/green-park.jpg",
   },
 ];
 
@@ -125,7 +133,7 @@ export const services: Service[] = [
   {
     slug: "hotel-home-spa",
     name: "Hotel & Home Spa",
-    duration: "60–90 min",
+    duration: "60 min",
     price: "₹2,499",
     description:
       "Professional spa therapists available at your hotel or home across Delhi NCR.",
@@ -141,7 +149,7 @@ export const services: Service[] = [
   {
     slug: "b2b-therapy",
     name: "B2B Therapy",
-    duration: "75 min",
+    duration: "60 min",
     price: "₹2,299",
     description:
       "Body-to-body therapy performed by trained professionals in a private, comfortable setting.",
@@ -149,7 +157,7 @@ export const services: Service[] = [
   {
     slug: "couple-massage",
     name: "Couple Massage in Delhi",
-    duration: "90 min",
+    duration: "60 min",
     price: "₹4,999",
     description:
       "A shared wellness experience for two in a private suite, with massage and steam.",
@@ -171,12 +179,12 @@ export const brand = {
 };
 
 export const specialties = [
-  { title: "Foreigner Therapist" },
-  { title: "5 Star Hotels Spa" },
-  { title: "Home Spa" },
-  { title: "Thai Massage" },
-  { title: "B2B Therapy" },
-  { title: "Full Body Massage" },
+  { title: "Foreigner Therapist", image: "/images/specialties/foreigner-therapist.jpg" },
+  { title: "5 Star Hotels Spa", image: "/images/specialties/5-star-hotel-spa.jpg" },
+  { title: "Home Spa", image: "/images/specialties/home-spa.jpg" },
+  { title: "Thai Massage", image: "/images/specialties/thai-massage.jpg" },
+  { title: "B2B Therapy", image: "/images/specialties/b2b-therapy.jpg" },
+  { title: "Full Body Massage", image: "/images/specialties/full-body-massage.jpg" },
 ];
 
 export const pricingPackages = [
@@ -191,7 +199,7 @@ export const pricingPackages = [
     name: "5 Star Hotel Outlet",
     price: "₹15,999",
     period: "Per session",
-    features: ["Oil Massage", "Cream Massage", "Private Suite", "B2B Massage", "120 min Session"],
+    features: ["Oil Massage", "Cream Massage", "Private Suite", "B2B Massage", "60 min Session"],
     popular: true,
   },
 ];

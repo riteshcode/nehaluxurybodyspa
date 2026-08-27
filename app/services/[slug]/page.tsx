@@ -5,6 +5,7 @@ import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
 import { services, brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
+import { getWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 
 export function generateStaticParams() {
@@ -182,7 +183,7 @@ export default async function ServicePage({
               Call to Book This Service
             </a>
             <a
-              href={brand.social.whatsapp}
+               href={getWhatsAppUrl(whatsappMessages.service(service.name))}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 block rounded-full border border-brass/40 px-6 py-3 text-center text-sm text-ink transition hover:bg-ink hover:text-cream"
