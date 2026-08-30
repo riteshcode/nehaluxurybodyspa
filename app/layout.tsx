@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SiteChrome from "@/components/SiteChrome";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { brand, branches } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
@@ -75,12 +74,10 @@ export default function RootLayout({
     "@type": "Organization",
     name: brand.name,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`, // TODO: update once logo is finalized
+    logo: `${SITE_URL}/logo.png`,
     telephone: brand.phone,
     email: brand.email,
-    sameAs: [
-      brand.social.whatsapp,
-    ],
+    sameAs: [brand.social.whatsapp],
     department: branches.map((b) => ({
       "@type": "DaySpa",
       name: `${brand.name} - ${b.area}`,
@@ -94,7 +91,6 @@ export default function RootLayout({
     })),
   };
 
-  // NEW — helps Google understand the site's brand name for search result display
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -113,9 +109,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
         <WhatsAppButton />
       </body>
     </html>
