@@ -127,7 +127,7 @@ export const services: Service[] = [
     slug: "sandwich-massage",
     name: "Sandwich Massage",
     duration: "60 min",
-    price: "₹1,999",
+    price: "₹2,999",
     description:
       "A unique two-therapist massage technique that works on both sides of the body simultaneously.",
     image: "/images/services/sandwich-massage.jpg",
@@ -136,7 +136,7 @@ export const services: Service[] = [
     slug: "hotel-home-spa",
     name: "Hotel & Home Spa",
     duration: "60 min",
-    price: "₹2,499",
+    price: "₹15,999",
     description:
       "Professional spa therapists available at your hotel or home across Delhi NCR.",
     image: "/images/services/5-star-hotel-spa.jpg",
@@ -145,7 +145,7 @@ export const services: Service[] = [
     slug: "full-body-massage",
     name: "Full Body Massage",
     duration: "60 min",
-    price: "₹1,799",
+    price: "₹1,999",
     description:
       "A complete full-body massage using warm oils to release tension and restore balance.",
     image: "/images/services/full-body-massage.jpg",
@@ -188,8 +188,8 @@ export const brand = {
 export const specialties = [
   { title: "Foreigner Therapist", image: "/images/specialties/foreigner-therapist.jpg" },
   { title: "5 Star Hotels Spa", image: "/images/specialties/5-star-hotel-spa.jpg" },
-  { title: "Home Spa", image: "/images/specialties/home-spa.jpg" },
-  { title: "Thai Massage", image: "/images/specialties/thai-massage.jpg" },
+  // { title: "Home Spa", image: "/images/specialties/home-spa.jpg" },
+  // { title: "Thai Massage", image: "/images/specialties/thai-massage.jpg" },
   { title: "B2B Therapy", image: "/images/specialties/b2b-therapy.jpg" },
   { title: "Full Body Massage", image: "/images/specialties/full-body-massage.jpg" },
 ];
