@@ -79,7 +79,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <p className="font-display text-3xl text-brass-light">10 AM–10 PM</p>
+                <p className="font-display text-3xl text-brass-light">24 X 7</p>
                 <p className="mt-1 text-xs uppercase tracking-widest text-cream/50">
                   Open all days
                 </p>
