@@ -52,6 +52,7 @@ export default function BranchesPage() {
                 ratio="video"
                 tone="light"
                 className="rounded-none"
+                src={b.image}
               />
               <div className="p-7">
                 <p className="font-display text-xl text-ink transition group-hover:text-brass">

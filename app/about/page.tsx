@@ -89,6 +89,7 @@ export default function AboutPage() {
             ratio="portrait"
             tone="light"
             className="h-full"
+            src={brand.image}
           />
         </div>
         <div className="md:col-span-3 leading-relaxed text-charcoal/80">

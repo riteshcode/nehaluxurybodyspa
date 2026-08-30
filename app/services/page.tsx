@@ -83,6 +83,7 @@ export default function ServicesPage() {
                 ratio="video"
                 tone="light"
                 className="rounded-none"
+                src={s.image}
               />
               <div className="flex items-start justify-between gap-6 p-7">
                 <div>

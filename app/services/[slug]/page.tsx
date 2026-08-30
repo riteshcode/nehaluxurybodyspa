@@ -132,6 +132,7 @@ export default async function ServicePage({
             alt={`${service.name} — ${service.duration} massage therapy at ${brand.name}`}
             ratio="wide"
             tone="light"
+            src={service.image}
           />
 
           <h2 className="mt-10 font-display text-2xl text-ink">

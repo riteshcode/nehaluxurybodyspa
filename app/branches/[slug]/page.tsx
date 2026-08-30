@@ -118,6 +118,7 @@ export default async function BranchPage({
             alt={`${brand.name} — ${branch.area} branch interior, ${branch.city}`}
             ratio="wide"
             tone="light"
+            src={branch.image}
           />
 
           <h2 className="mt-10 font-display text-2xl text-ink">

@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   keywords: [
     "spa in Delhi",
     "luxury spa Delhi NCR",
+    "body spa near me",       // NEW
+    "luxury body spa Delhi",  // NEW
     "body massage near me",
     "couple spa Delhi",
     "best spa Delhi NCR",

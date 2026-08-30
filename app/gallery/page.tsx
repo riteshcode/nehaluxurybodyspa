@@ -18,15 +18,16 @@ export const metadata: Metadata = {
 const galleryItems: {
   label: string;
   ratio: "square" | "portrait" | "wide" | "video";
+  image: string;
 }[] = [
-  { label: "Reception & waiting lounge", ratio: "portrait" },
-  { label: "Private treatment suite", ratio: "square" },
-  { label: "Signature oil massage setup", ratio: "square" },
-  { label: "Couple spa suite", ratio: "portrait" },
-  { label: "Steam & shower facility", ratio: "wide" },
-  { label: "Therapy room ambience", ratio: "square" },
-  { label: "Hotel spa partner setting", ratio: "square" },
-  { label: "Relaxation corner", ratio: "portrait" },
+  { label: "Reception & waiting lounge", ratio: "portrait", image: "/images/gallery/reception.jpg" },
+  { label: "Private treatment suite", ratio: "square", image: "/images/gallery/private-treatment.jpg" },
+  { label: "Signature oil massage setup", ratio: "square", image: "/images/gallery/signature-massage.jpg" },
+  { label: "Couple spa suite", ratio: "portrait", image: "/images/gallery/couple-spa.jpg" },
+  { label: "Steam & shower facility", ratio: "wide", image: "/images/gallery/steam-shower.jpg" },
+  { label: "Therapy room ambience", ratio: "square", image: "/images/gallery/therapy-room.jpg" },
+  { label: "Hotel spa partner setting", ratio: "square", image: "/images/gallery/hotel-spa.jpg" },
+  { label: "Relaxation corner", ratio: "portrait", image: "/images/gallery/relaxation-corner.jpg" },
 ];
 
 export default function GalleryPage() {
@@ -64,6 +65,7 @@ export default function GalleryPage() {
                 ratio={item.ratio}
                 tone="light"
                 className="w-full"
+                src={item.image}
               />
             </div>
           ))}

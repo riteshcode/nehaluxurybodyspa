@@ -119,6 +119,7 @@ export type Service = {
   duration: string;
   price: string;
   description: string;
+  image: string;
 };
 
 export const services: Service[] = [
@@ -129,6 +130,7 @@ export const services: Service[] = [
     price: "₹1,999",
     description:
       "A unique two-therapist massage technique that works on both sides of the body simultaneously.",
+    image: "/images/services/sandwich-massage.jpg",
   },
   {
     slug: "hotel-home-spa",
@@ -137,6 +139,7 @@ export const services: Service[] = [
     price: "₹2,499",
     description:
       "Professional spa therapists available at your hotel or home across Delhi NCR.",
+    image: "/images/services/5-star-hotel-spa.jpg",
   },
   {
     slug: "full-body-massage",
@@ -145,6 +148,7 @@ export const services: Service[] = [
     price: "₹1,799",
     description:
       "A complete full-body massage using warm oils to release tension and restore balance.",
+    image: "/images/services/full-body-massage.jpg",
   },
   {
     slug: "b2b-therapy",
@@ -153,6 +157,7 @@ export const services: Service[] = [
     price: "₹2,299",
     description:
       "Body-to-body therapy performed by trained professionals in a private, comfortable setting.",
+    image: "/images/services/b2b-therapy.jpg",
   },
   {
     slug: "couple-massage",
@@ -161,6 +166,7 @@ export const services: Service[] = [
     price: "₹4,999",
     description:
       "A shared wellness experience for two in a private suite, with massage and steam.",
+    image: "/images/services/couple-massage.jpg",
   },
 ];
 
@@ -171,6 +177,7 @@ export const brand = {
   tagline: "Restore. Renew. Reconnect.",
   address: "Central Market, Lajpat Nagar, Delhi 110024",
   email: "info@nehaluxurybodyspa.in",
+  image: "/images/heropage.jpg",
   social: {
     linkedin: "#",
     whatsapp: "https://wa.me/918796519171",
@@ -207,11 +214,13 @@ export const pricingPackages = [
 export const hotelPartners = [
   {
     name: "IBIS New Delhi, Aerocity",
+    image: "/images/branches/aerocity.jpeg",
     description:
       "Experience a refreshing massage therapy at the best spa in Aerocity, with premium hotel spa services near Delhi Airport.",
   },
   {
     name: "The Park New Delhi, C.P",
+    image: "/images/branches/connaught-place.jpg",
     description:
       "Enjoy rejuvenating massage in Delhi by expert therapists in a serene, elegant ambiance at The Park hotel spa.",
   },

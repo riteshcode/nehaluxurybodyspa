@@ -197,6 +197,7 @@ export default function Home() {
                 ratio="video"
                 tone="light"
                 className="rounded-none"
+                src={s.image}
               />
               <div className="p-7">
                 <p className="font-display text-xl text-ink">{s.name}</p>
@@ -296,6 +297,7 @@ export default function Home() {
                 ratio="wide"
                 tone="light"
                 className="rounded-none"
+                src={h.image}
               />
               <div className="p-7">
                 <p className="font-display text-xl text-ink">{h.name}</p>
