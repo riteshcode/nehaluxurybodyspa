@@ -206,30 +206,56 @@ export const pricingPackages = [
     name: "5 Star Hotel Outlet",
     price: "₹15,999",
     period: "Per session",
-    features: ["Oil Massage", "Cream Massage", "Private Suite", "B2B Massage", "60 min Session"],
+    // features: ["Oil Massage", "Cream Massage", "Private Suite", "B2B Massage", "60 min Session"],
+    features: ["Private Suite", "60 min Session"],
     popular: true,
   },
 ];
 
-export const hotelPartners = [
+export type HotelPartner = {
+  area: string;
+  hotels: string[];
+  image?: string;
+};
+
+export const hotelPartners: HotelPartner[] = [
   {
-    name: "IBIS New Delhi, Aerocity",
+    area: "Aerocity",
+    hotels: ["Pullman", "Roseate House", "Novotel", "Ibis"],
     image: "/images/branches/aerocity.jpeg",
-    description:
-      "Experience a refreshing massage therapy at the best spa in Aerocity, with premium hotel spa services near Delhi Airport.",
   },
   {
-    name: "The Park New Delhi, C.P",
+    area: "Mahipalpur",
+    hotels: ["Radisson Blu"],
+    image: "/images/branches/mahipalpur.jpg", // TODO: add this image
+  },
+  {
+    area: "NFC",
+    hotels: ["Surya"],
+    image: "/images/branches/nfc.webp", // TODO: add this image
+  },
+  {
+    area: "Connaught Place",
+    hotels: ["Royal Plaza", "The Hans", "The Park"],
     image: "/images/branches/connaught-place.jpg",
-    description:
-      "Enjoy rejuvenating massage in Delhi by expert therapists in a serene, elegant ambiance at The Park hotel spa.",
+  },
+  {
+    area: "Chanakyapuri",
+    hotels: ["Ashoka Hotel"],
+    image: "/images/branches/chanakyapuri.webp", // TODO: add this image
   },
 ];
 
 export const topLocations = [
-  "Aerocity", "Gurgaon", "Karol Bagh", "Rohini",
-  "Noida", "Lajpat Nagar", "Dwarka", "Pitampura",
+  "Aerocity",
+  "Mahipalpur", "NFC", "Chanakyapuri", "Connaught Place",
 ];
+
+// export const topLocations = [
+//   "Aerocity", "Gurgaon", "Karol Bagh", "Rohini",
+//   "Noida", "Lajpat Nagar", "Dwarka", "Pitampura",
+//   "Mahipalpur", "NFC", "Chanakyapuri", "Connaught Place",
+// ];
 
 
 

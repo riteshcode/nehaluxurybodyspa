@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   keywords: [
     "spa in Delhi",
     "luxury spa Delhi NCR",
-    "body spa near me",       // NEW
-    "luxury body spa Delhi",  // NEW
+    "body spa near me",
+    "luxury body spa Delhi",
     "body massage near me",
     "couple spa Delhi",
     "best spa Delhi NCR",
@@ -94,12 +94,24 @@ export default function RootLayout({
     })),
   };
 
+  // NEW — helps Google understand the site's brand name for search result display
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: brand.name,
+    url: SITE_URL,
+  };
+
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <Navbar />
         {children}

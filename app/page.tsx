@@ -240,11 +240,10 @@ export default function Home() {
             {pricingPackages.map((p) => (
               <div
                 key={p.name}
-                className={`relative rounded-2xl border p-8 ${
-                  p.popular
-                    ? "border-brass bg-ink-soft"
-                    : "border-cream/15 bg-ink-soft/50"
-                }`}
+                className={`relative rounded-2xl border p-8 ${p.popular
+                  ? "border-brass bg-ink-soft"
+                  : "border-cream/15 bg-ink-soft/50"
+                  }`}
               >
                 {p.popular && (
                   <span className="absolute -top-3 right-6 rounded-full bg-brass px-3 py-1 text-xs font-medium text-ink">
@@ -279,6 +278,7 @@ export default function Home() {
       </section>
 
       {/* Hotel Spa Partners */}
+      {/* Hotel Spa Partners */}
       <section className="mx-auto max-w-5xl px-6 py-20">
         <p className="text-sm uppercase tracking-[0.3em] text-brass">
           Premium Partners
@@ -286,31 +286,40 @@ export default function Home() {
         <h2 className="mt-3 font-display text-3xl text-ink md:text-4xl">
           Hotel Spa Locations
         </h2>
-        <div className="mt-10 grid gap-8 md:grid-cols-2">
+        <p className="mt-4 max-w-xl text-charcoal/70">
+          We provide premium spa services at leading hotels across these Delhi
+          NCR locations.
+        </p>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {hotelPartners.map((h) => (
             <div
-              key={h.name}
+              key={h.area}
               className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white/60"
             >
               <BrandImage
-                alt={h.name}
+                alt={`Hotel spa services in ${h.area}`}
                 ratio="wide"
                 tone="light"
                 className="rounded-none"
                 src={h.image}
               />
               <div className="p-7">
-                <p className="font-display text-xl text-ink">{h.name}</p>
-                <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
-                  {h.description}
-                </p>
+                <p className="font-display text-xl text-ink">{h.area}</p>
+                <ul className="mt-3 space-y-2 text-sm text-charcoal/70">
+                  {h.hotels.map((hotel) => (
+                    <li key={hotel} className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brass" />
+                      {hotel}
+                    </li>
+                  ))}
+                </ul>
                 <a
-                  href={getWhatsAppUrl(whatsappMessages.general)}
+                  href={getWhatsAppUrl(whatsappMessages.location(h.area))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-block text-sm text-brass hover:underline"
                 >
-                  View Daily Updates →
+                  Enquire for {h.area} →
                 </a>
               </div>
             </div>
@@ -413,6 +422,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }
