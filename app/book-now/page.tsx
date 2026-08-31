@@ -1,45 +1,38 @@
-import type { Metadata } from "next";
+"use client";
+
 import { brand, hotelPartners } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
-import { SITE_URL } from "@/lib/config";
-
-export const metadata: Metadata = {
-  title: "Book Hotel Spa Therapy",
-  description:
-    "Book a certified spa therapist at your hotel in Delhi NCR. Available at Aerocity, Mahipalpur, NFC, Connaught Place and Chanakyapuri. Call now.",
-  alternates: {
-    canonical: `${SITE_URL}/book-now`,
-  },
-  robots: {
-    index: false,
-    follow: false,
-  },
-  openGraph: {
-    title: "Book Hotel Spa Therapy — ₹11,999",
-    description:
-      "Certified therapist at your hotel — Aerocity, CP, Dwarka, NFC, Chanakyapuri.",
-    url: `${SITE_URL}/book-now`,
-    type: "website",
-    images: [
-      {
-        url: "/og-image-book-now.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Book Hotel Spa Therapy at Neha Luxury Body Spa",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Book Hotel Spa Therapy — ₹11,999",
-    description:
-      "Certified therapist at your hotel — Aerocity, CP, Dwarka, NFC, Chanakyapuri.",
-    images: ["/og-image-book-now.jpg"],
-  },
-};
 
 const bookingMessage =
   "Hi, I want to book a therapy session at my hotel. Please share availability.";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+function handleWhatsAppClick(
+  e: React.MouseEvent<HTMLAnchorElement>,
+  url: string
+) {
+  e.preventDefault();
+
+  const callback = () => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "conversion", {
+      send_to: "AW-18418684466/YDpFCNnHguscELKk285E",
+      event_callback: callback,
+    });
+    // Safety fallback in case gtag callback is delayed or blocked
+    setTimeout(callback, 1000);
+  } else {
+    callback();
+  }
+}
 
 export default function BookNowPage() {
   const whatsappUrl = getWhatsAppUrl(bookingMessage);
@@ -86,8 +79,7 @@ export default function BookNowPage() {
             </a>
             <a
               href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={(e) => handleWhatsAppClick(e, whatsappUrl)}
               className="rounded-full border border-cream/30 px-8 py-3.5 text-sm font-semibold text-cream transition hover:border-brass-light hover:text-brass-light"
             >
               Chat on WhatsApp
@@ -163,8 +155,7 @@ export default function BookNowPage() {
           </a>
           <a
             href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={(e) => handleWhatsAppClick(e, whatsappUrl)}
             className="flex-1 rounded-full bg-brass px-6 py-3 text-center text-sm font-semibold text-ink transition hover:bg-brass-light"
           >
             WhatsApp
