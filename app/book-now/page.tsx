@@ -9,6 +9,7 @@ const bookingMessage =
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -18,19 +19,30 @@ function handleWhatsAppClick(
 ) {
   e.preventDefault();
 
-  const callback = () => {
+  let opened = false;
+
+  const openWhatsApp = () => {
+    if (opened) return;
+    opened = true;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
+  // Meta Pixel — WhatsApp lead/contact event
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "Contact");
+  }
+
+  // Google Ads — WhatsApp conversion
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag("event", "conversion", {
       send_to: "AW-18418684466/YDpFCNnHguscELKk285E",
-      event_callback: callback,
+      event_callback: openWhatsApp,
     });
+
     // Safety fallback in case gtag callback is delayed or blocked
-    setTimeout(callback, 1000);
+    setTimeout(openWhatsApp, 1000);
   } else {
-    callback();
+    openWhatsApp();
   }
 }
 
@@ -66,6 +78,7 @@ export default function BookNowPage() {
               / session
             </span>
           </div>
+
           <p className="mt-3 text-sm text-cream/60">
             Facility available at select 5-star hotels
           </p>
@@ -77,6 +90,7 @@ export default function BookNowPage() {
             >
               Call {brand.phone}
             </a>
+
             <a
               href={whatsappUrl}
               onClick={(e) => handleWhatsAppClick(e, whatsappUrl)}
@@ -97,12 +111,14 @@ export default function BookNowPage() {
               Certified Therapists
             </p>
           </div>
+
           <div className="flex items-center gap-2">
             <span className="h-1 w-1 rounded-full bg-brass" />
             <p className="text-xs uppercase tracking-widest text-charcoal/60">
               At Your Hotel
             </p>
           </div>
+
           <div className="flex items-center gap-2">
             <span className="h-1 w-1 rounded-full bg-brass" />
             <p className="text-xs uppercase tracking-widest text-charcoal/60">
@@ -117,6 +133,7 @@ export default function BookNowPage() {
         <p className="text-center text-xs uppercase tracking-[0.3em] text-brass">
           Facility Available At
         </p>
+
         <h2 className="mt-2 text-center font-display text-xl text-ink md:text-2xl">
           5-Star Hotel Locations
         </h2>
@@ -128,6 +145,7 @@ export default function BookNowPage() {
               className="rounded-xl border border-charcoal/10 bg-white/60 px-5 py-4"
             >
               <p className="font-display text-base text-ink">{h.area}</p>
+
               <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5">
                 {h.hotels.map((hotel) => (
                   <span
@@ -153,6 +171,7 @@ export default function BookNowPage() {
           >
             Call Now
           </a>
+
           <a
             href={whatsappUrl}
             onClick={(e) => handleWhatsAppClick(e, whatsappUrl)}

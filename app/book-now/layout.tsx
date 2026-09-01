@@ -2,20 +2,24 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Book Hotel Spa Therapy",
+  title: "Book Hotel Spa Therapy | Neha Luxury Body Spa",
+
   description:
-    "Book a certified spa therapist at your hotel in Delhi NCR. Available at Aerocity, Mahipalpur, NFC, Connaught Place and Chanakyapuri. Call now.",
+    "Book premium hotel spa therapy with certified therapists in Aerocity, Mahipalpur, Chanakyapuri, NFC and Connaught Place. Easy WhatsApp booking.",
+
   alternates: {
     canonical: `${SITE_URL}/book-now`,
   },
+
   robots: {
     index: false,
     follow: false,
   },
+
   openGraph: {
-    title: "Book Hotel Spa Therapy — ₹11,999",
+    title: "Book Hotel Spa Therapy | Neha Luxury Body Spa",
     description:
-      "Certified therapist at your hotel — Aerocity, CP, Dwarka, NFC, Chanakyapuri.",
+      "Premium spa therapy at your hotel in Aerocity, Mahipalpur, Chanakyapuri, NFC and Connaught Place. Book on WhatsApp.",
     url: `${SITE_URL}/book-now`,
     type: "website",
     images: [
@@ -27,11 +31,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Book Hotel Spa Therapy — ₹11,999",
+    title: "Book Hotel Spa Therapy | Neha Luxury Body Spa",
     description:
-      "Certified therapist at your hotel — Aerocity, CP, Dwarka, NFC, Chanakyapuri.",
+      "Premium hotel spa therapy with certified therapists. Book easily on WhatsApp.",
     images: ["/og-image-book-now.jpg"],
   },
 };
