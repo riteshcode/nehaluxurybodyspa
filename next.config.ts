@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
               "font-src 'self' https://fonts.gstatic.com; " +
               "img-src 'self' data: https:; " +
-              "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.google.co.in https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://graph.facebook.com;",
+              "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.google.co.in https://www.googleadservices.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://connect.facebook.net https://www.facebook.com https://graph.facebook.com;",
           },
         ],
       },
