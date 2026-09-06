@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
-import { blogPosts, brand } from "@/lib/data";
+import { getAllBlogPosts } from "@/lib/blog";
+import { brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -22,7 +23,8 @@ function formatDate(iso: string) {
   });
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const blogPosts = await getAllBlogPosts();
   const [featured, ...rest] = blogPosts;
 
   return (
@@ -49,7 +51,6 @@ export default function BlogPage() {
       <RippleDivider tone="ink" />
 
       {/* Featured post */}
-      {/* Featured post */}
       {featured && (
         <section className="mx-auto max-w-5xl px-6 py-16">
           <Link
@@ -62,6 +63,7 @@ export default function BlogPage() {
                 ratio="fill"
                 tone="light"
                 className="w-full rounded-none"
+                src={featured.image}
               />
             </div>
             <div className="flex min-w-0 flex-col justify-center p-7 md:w-1/2 md:p-10">
@@ -101,6 +103,7 @@ export default function BlogPage() {
                 ratio="video"
                 tone="light"
                 className="rounded-none"
+                src={post.image}
               />
               <div className="p-6">
                 <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-sage">

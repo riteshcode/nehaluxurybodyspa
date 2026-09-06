@@ -3,12 +3,13 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
-import { blogPosts, brand } from "@/lib/data";
+import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
+import { brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
 
-
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -17,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlug(slug);
   if (!post) return {};
 
   const url = `${SITE_URL}/blog/${post.slug}`;
@@ -36,7 +37,7 @@ export async function generateMetadata({
       publishedTime: post.date,
       images: [
         {
-          url: "/og-image.jpg", // TODO: ideally a post-specific cover image
+          url: post.image || "/og-image.jpg",
           width: 1200,
           height: 630,
           alt: post.title,
@@ -47,7 +48,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: ["/og-image.jpg"],
+      images: [post.image || "/og-image.jpg"],
     },
   };
 }
@@ -66,10 +67,11 @@ export default async function BlogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
-  const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const allPosts = await getAllBlogPosts();
+  const otherPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -93,6 +95,23 @@ export default async function BlogDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      {/* Breadcrumb */}
+      <div className="border-b border-charcoal/10 bg-cream-dim">
+        <div className="mx-auto max-w-3xl px-6 py-3">
+          <nav className="flex items-center gap-2 text-xs text-charcoal/60">
+            <Link href="/" className="hover:text-brass">
+              Home
+            </Link>
+            <span>/</span>
+            <Link href="/blog" className="hover:text-brass">
+              Blog
+            </Link>
+            <span>/</span>
+            <span className="truncate text-charcoal/40">{post.title}</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink py-20 text-cream">
@@ -118,7 +137,7 @@ export default async function BlogDetailPage({
 
       {/* Content */}
       <section className="mx-auto max-w-3xl px-6 py-16">
-        <BrandImage alt={post.title} ratio="wide" tone="light" />
+        <BrandImage alt={post.title} ratio="wide" tone="light" src={post.image} />
 
         <div className="mt-10 space-y-6">
           {post.content.map((paragraph, i) => (

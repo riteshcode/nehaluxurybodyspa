@@ -24,13 +24,12 @@ const outletLinks = [
   { href: "/branches/green-park", label: "Spa in Green Park" },
 ];
 
+// Gallery and Contact removed from visible nav — pages still exist, just not linked here
 const simpleLinks = [
   { href: "/", label: "Home" },
   { href: "/pricing", label: "Our Pricing" },
-  { href: "/gallery", label: "Gallery" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blogs" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -39,13 +38,11 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileAccordion, setMobileAccordion] = useState<"services" | "outlets" | null>(null);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
     setMobileAccordion(null);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -69,7 +66,6 @@ export default function Navbar() {
           className="group flex items-center gap-3"
           onClick={() => setMobileOpen(false)}
         >
-          {/* Monogram mark */}
           <span className="relative h-10 w-10 overflow-hidden rounded-full border border-brass/40 bg-ink transition group-hover:border-brass">
             <Image
               src="/logo-icon.png"
@@ -80,7 +76,6 @@ export default function Navbar() {
             />
           </span>
 
-          {/* Wordmark */}
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg italic tracking-wide text-ink">
               Neha <span className="not-italic text-brass">Luxury</span>
@@ -123,9 +118,6 @@ export default function Navbar() {
           <Link href="/pricing" className={navLinkClass("/pricing")}>
             Our Pricing
           </Link>
-          <Link href="/gallery" className={navLinkClass("/gallery")}>
-            Gallery
-          </Link>
 
           <div
             className="relative"
@@ -156,12 +148,15 @@ export default function Navbar() {
           <Link href="/blog" className={navLinkClass("/blog")}>
             Blogs
           </Link>
-          <Link href="/contact" className={navLinkClass("/contact")}>
-            Contact
-          </Link>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <a
+            href={`tel:${brand.phone.replace(/[^0-9+]/g, "")}`}
+            className="hidden rounded-full border border-ink/20 px-5 py-2 text-sm text-ink transition hover:border-brass hover:text-brass sm:inline-block"
+          >
+            Call Now
+          </a>
           <a
             href={`tel:${brand.phone.replace(/[^0-9+]/g, "")}`}
             className="hidden rounded-full bg-ink px-5 py-2 text-sm text-cream transition hover:bg-ink-soft sm:inline-block"
@@ -249,7 +244,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {simpleLinks.slice(1, 3).map((l) => (
+          {simpleLinks.slice(1, 2).map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -297,7 +292,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {simpleLinks.slice(3).map((l) => (
+          {simpleLinks.slice(2).map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -307,7 +302,8 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <a
+
+          <a    
             href={`tel:${brand.phone.replace(/[^0-9+]/g, "")}`}
             className="mt-5 block rounded-full bg-ink px-6 py-3 text-center text-sm text-cream transition hover:bg-ink-soft"
           >

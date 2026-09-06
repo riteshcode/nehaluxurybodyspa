@@ -6,6 +6,7 @@ import SiteChrome from "@/components/SiteChrome";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { brand, branches } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
+import CallButton from "@/components/CallButton";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -152,7 +153,7 @@ export default function RootLayout({
         />
 
         <SiteChrome>{children}</SiteChrome>
-
+        <CallButton />
         <WhatsAppButton />
       </body>
     </html>
