@@ -7,6 +7,8 @@ import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
 import { brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
   return posts.map((p) => ({ slug: p.slug }));

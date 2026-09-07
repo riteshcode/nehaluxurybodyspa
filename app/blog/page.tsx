@@ -6,6 +6,8 @@ import { getAllBlogPosts } from "@/lib/blog";
 import { brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
