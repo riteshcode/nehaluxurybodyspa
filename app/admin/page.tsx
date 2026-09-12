@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import RichTextEditor from "@/components/admin/RichTextEditor";
 
 type Post = {
   slug: string;
@@ -10,7 +11,7 @@ type Post = {
   category: string;
   date: string;
   read_time: string;
-  content: string[];
+  content_html: string;
   image_url?: string;
 };
 
@@ -21,7 +22,7 @@ const emptyForm = {
   category: "Wellness",
   date: new Date().toISOString().slice(0, 10),
   readTime: "4 min read",
-  contentText: "",
+  contentHtml: "<p></p>",
   imageUrl: "",
 };
 
@@ -67,7 +68,7 @@ export default function AdminPage() {
       category: post.category,
       date: post.date,
       readTime: post.read_time,
-      contentText: post.content.join("\n\n"),
+      contentHtml: post.content_html || "<p></p>",
       imageUrl: post.image_url || "",
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -106,11 +107,6 @@ export default function AdminPage() {
     setStatus("saving");
     setErrorMsg("");
 
-    const content = form.contentText
-      .split(/\n\s*\n/)
-      .map((p) => p.trim())
-      .filter(Boolean);
-
     const payload = {
       slug: form.slug || slugify(form.title),
       title: form.title,
@@ -118,7 +114,7 @@ export default function AdminPage() {
       category: form.category,
       date: form.date,
       readTime: form.readTime,
-      content,
+      contentHtml: form.contentHtml,
       imageUrl: form.imageUrl,
     };
 
@@ -278,15 +274,14 @@ export default function AdminPage() {
 
         <div>
           <label className="text-xs uppercase tracking-widest text-sage">
-            Content (separate paragraphs with a blank line)
+            Content
           </label>
-          <textarea
-            value={form.contentText}
-            onChange={(e) => setForm((f) => ({ ...f, contentText: e.target.value }))}
-            required
-            rows={10}
-            className="mt-1 w-full rounded-xl border border-charcoal/15 px-4 py-3 text-sm focus:border-brass focus:outline-none"
-          />
+          <div className="mt-1">
+            <RichTextEditor
+              content={form.contentHtml}
+              onChange={(html) => setForm((f) => ({ ...f, contentHtml: html }))}
+            />
+          </div>
         </div>
 
         <div className="flex gap-3">

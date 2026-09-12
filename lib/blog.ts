@@ -7,7 +7,7 @@ export type BlogPost = {
   category: string;
   date: string;
   readTime: string;
-  content: string[];
+  contentHtml: string; // CHANGED — was content: string[]
   image?: string;
 };
 
@@ -19,7 +19,7 @@ function mapRow(row: any): BlogPost {
     category: row.category,
     date: row.date,
     readTime: row.read_time,
-    content: row.content,
+    contentHtml: row.content_html || "",
     image: row.image_url || undefined,
   };
 }

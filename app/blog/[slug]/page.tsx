@@ -6,6 +6,7 @@ import BrandImage from "@/components/BrandImage";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
 import { brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
+import sanitizeHtml from "sanitize-html";
 
 export const dynamic = "force-dynamic";
 
@@ -141,13 +142,21 @@ export default async function BlogDetailPage({
       <section className="mx-auto max-w-3xl px-6 py-16">
         <BrandImage alt={post.title} ratio="wide" tone="light" src={post.image} />
 
-        <div className="mt-10 space-y-6">
-          {post.content.map((paragraph, i) => (
-            <p key={i} className="leading-relaxed text-charcoal/80">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        <div
+          className="prose prose-slate max-w-none prose-headings:font-display prose-headings:text-ink prose-a:text-brass prose-a:no-underline hover:prose-a:underline"
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHtml(post.contentHtml, {
+              allowedTags: [
+                "p", "br", "strong", "em", "b", "i", "u",
+                "h1", "h2", "h3", "h4", "h5", "h6",
+                "ul", "ol", "li", "a", "blockquote",
+              ],
+              allowedAttributes: {
+                a: ["href", "target", "rel"],
+              },
+            }),
+          }}
+        />
 
         <div className="mt-12 rounded-2xl border border-brass/25 bg-cream-dim p-7 text-center">
           <p className="font-display text-lg text-ink">

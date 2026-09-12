@@ -11,26 +11,49 @@ async function getSession() {
 
 export async function GET() {
   const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { data, error } = await supabaseAdmin
     .from("blog_posts")
     .select("*")
     .order("date", { ascending: false });
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error)
+    return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ posts: data, role: session.role });
 }
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
-  const { slug, title, excerpt, category, date, readTime, content, imageUrl } = body;
+  const {
+    slug,
+    title,
+    excerpt,
+    category,
+    date,
+    readTime,
+    contentHtml,
+    imageUrl,
+  } = body;
 
-  if (!slug || !title || !excerpt || !category || !date || !readTime || !Array.isArray(content)) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  if (
+    !slug ||
+    !title ||
+    !excerpt ||
+    !category ||
+    !date ||
+    !readTime ||
+    !contentHtml
+  ) {
+    return NextResponse.json(
+      { error: "Missing required fields" },
+      { status: 400 },
+    );
   }
 
   const { error } = await supabaseAdmin.from("blog_posts").insert({
@@ -40,13 +63,16 @@ export async function POST(req: NextRequest) {
     category,
     date,
     read_time: readTime,
-    content,
+    content_html: contentHtml, // CHANGED
     image_url: imageUrl || null,
   });
 
   if (error) {
     if (error.code === "23505") {
-      return NextResponse.json({ error: "A post with this slug already exists" }, { status: 400 });
+      return NextResponse.json(
+        { error: "A post with this slug already exists" },
+        { status: 400 },
+      );
     }
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -56,13 +82,36 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
-  const { originalSlug, slug, title, excerpt, category, date, readTime, content, imageUrl } = body;
+  const {
+    originalSlug,
+    slug,
+    title,
+    excerpt,
+    category,
+    date,
+    readTime,
+    contentHtml,
+    imageUrl,
+  } = body;
 
-  if (!originalSlug || !slug || !title || !excerpt || !category || !date || !readTime || !Array.isArray(content)) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  if (
+    !originalSlug ||
+    !slug ||
+    !title ||
+    !excerpt ||
+    !category ||
+    !date ||
+    !readTime ||
+    !contentHtml
+  ) {
+    return NextResponse.json(
+      { error: "Missing required fields" },
+      { status: 400 },
+    );
   }
 
   const { error } = await supabaseAdmin
@@ -74,29 +123,39 @@ export async function PUT(req: NextRequest) {
       category,
       date,
       read_time: readTime,
-      content,
+      content_html: contentHtml, // CHANGED
       image_url: imageUrl || null,
       updated_at: new Date().toISOString(),
     })
     .eq("slug", originalSlug);
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error)
+    return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(req: NextRequest) {
   const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   if (session.role !== "admin") {
-    return NextResponse.json({ error: "Only admins can delete posts" }, { status: 403 });
+    return NextResponse.json(
+      { error: "Only admins can delete posts" },
+      { status: 403 },
+    );
   }
 
   const { slug } = await req.json();
-  if (!slug) return NextResponse.json({ error: "Slug required" }, { status: 400 });
+  if (!slug)
+    return NextResponse.json({ error: "Slug required" }, { status: 400 });
 
-  const { error } = await supabaseAdmin.from("blog_posts").delete().eq("slug", slug);
+  const { error } = await supabaseAdmin
+    .from("blog_posts")
+    .delete()
+    .eq("slug", slug);
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error)
+    return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ ok: true });
 }
