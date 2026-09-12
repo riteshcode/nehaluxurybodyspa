@@ -147,9 +147,9 @@ export default async function BlogDetailPage({
           dangerouslySetInnerHTML={{
             __html: sanitizeHtml(post.contentHtml, {
               allowedTags: [
-                "p", "br", "strong", "em", "b", "i", "u",
+                "p", "br", "strong", "em", "b", "i", "u", "s", "strike", "code", "pre",
                 "h1", "h2", "h3", "h4", "h5", "h6",
-                "ul", "ol", "li", "a", "blockquote",
+                "ul", "ol", "li", "a", "blockquote", "hr",
               ],
               allowedAttributes: {
                 a: ["href", "target", "rel"],
