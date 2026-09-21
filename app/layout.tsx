@@ -104,7 +104,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
-        
+
         {/* Google Ads conversion tracking tag */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18418684466"
@@ -117,6 +117,21 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-18418684466');
+          `}
+        </Script>
+
+        {/* Google Analytics 4 (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-065W7RM8N3"
+          strategy="afterInteractive"
+        />
+
+        <Script id="ga4-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-065W7RM8N3');
           `}
         </Script>
 
@@ -156,7 +171,7 @@ export default function RootLayout({
         <SiteChrome>{children}</SiteChrome>
         <CallButton />
         <WhatsAppButton />
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
   );
