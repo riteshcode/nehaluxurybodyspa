@@ -136,7 +136,7 @@ export const services: Service[] = [
     slug: "hotel-home-spa",
     name: "Hotel & Home Spa",
     duration: "60 min",
-    price: "₹15,999",
+    price: "₹11,999",
     description:
       "Professional spa therapists available at your hotel or home across Delhi NCR.",
     image: "/images/services/5-star-hotel-spa.jpg",
@@ -204,7 +204,7 @@ export const pricingPackages = [
   },
   {
     name: "5 Star Hotel Outlet",
-    price: "₹15,999",
+    price: "₹11,999",
     period: "Per session",
     // features: ["Oil Massage", "Cream Massage", "Private Suite", "B2B Massage", "60 min Session"],
     features: ["Private Suite", "60 min Session"],

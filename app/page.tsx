@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
@@ -17,6 +18,27 @@ import {
 } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Best Spa in Delhi NCR | Wellness Spa & Body Massage Near Me",
+  description:
+    "Looking for a spa near me? Neha Luxury Body Spa offers premium body massage, wellness spa rituals and professional massage therapy across Delhi NCR — Aerocity, CP, Mahipalpur, NFC & Chanakyapuri.",
+  keywords: [
+    "wellness spa Delhi NCR",
+    "spa near me",
+    "best spa in Delhi",
+    "massage center near me",
+    "spa in Delhi NCR",
+    "luxury spa Delhi",
+    "wellness center Delhi NCR",
+    "body massage center Delhi",
+    "spa and massage Delhi",
+    "professional massage therapist Delhi",
+    "relaxation spa Delhi NCR",
+    "best wellness spa near me",
+    "spa booking Delhi NCR",
+  ],
+};
 
 export default async function Home() {
   const reviews = await getAllReviews();
@@ -65,7 +87,7 @@ export default async function Home() {
         <div className="mx-auto grid max-w-6xl gap-14 px-6 py-24 md:grid-cols-5 md:py-32">
           <div className="reveal md:col-span-3">
             <p className="text-sm uppercase tracking-[0.3em] text-brass-light">
-              Delhi NCR&apos;s Trusted Spa Brand
+              Delhi NCR&apos;s Trusted Wellness Spa Brand
             </p>
             <h1 className="mt-5 font-display text-4xl italic leading-tight text-cream md:text-5xl">
               Restore Your Body.
@@ -75,11 +97,12 @@ export default async function Home() {
               </span>
             </h1>
             <p className="mt-6 max-w-md text-cream/70">
-              {brand.name} brings premium body massage and wellness rituals
-              to {branches.length}+ locations across Delhi NCR. Every
-              session is guided by expert therapists in a calm, private
-              setting — from sandwich and couple massage to bespoke B2B
-              therapy.
+              Searching for a <strong className="text-cream">spa near me</strong>?
+              {" "}{brand.name} brings premium body massage and wellness spa
+              rituals to {branches.length}+ locations across Delhi NCR. Every
+              session is guided by expert, professional massage therapists in a
+              calm, private setting — from sandwich and couple massage to
+              bespoke B2B therapy.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
@@ -116,7 +139,9 @@ export default async function Home() {
                 </p>
               </div>
               <div>
-                <p className="font-display text-3xl text-brass-light">24 X 7</p>
+                <p className="font-display text-3xl text-brass-light">
+                  {branches[0]?.hours.split(",")[0] || "10 AM–9 PM"}
+                </p>
                 <p className="mt-1 text-xs uppercase tracking-widest text-cream/50">
                   Open all days
                 </p>
@@ -169,6 +194,10 @@ export default async function Home() {
             Delhi
           </h2>
         </Link>
+        <p className="mx-auto mt-4 max-w-lg text-sm text-charcoal/60">
+          Recognized as one of the best spas in Delhi for in-hotel body
+          massage and relaxation therapy.
+        </p>
       </section>
 
       {/* Specialties strip */}
@@ -212,7 +241,7 @@ export default async function Home() {
               Our Rituals
             </p>
             <h2 className="mt-3 font-display text-3xl text-ink md:text-4xl">
-              Services designed to restore balance
+              Wellness spa services designed to restore balance
             </h2>
           </div>
           <Link
