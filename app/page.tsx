@@ -1,7 +1,11 @@
 import Link from "next/link";
 import RippleDivider from "@/components/RippleDivider";
 import BrandImage from "@/components/BrandImage";
+import GoogleReviewCard from "@/components/GoogleReviewCard";
+import FaqAccordion from "@/components/FaqAccordion";
 import { getWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
+import { getAllReviews } from "@/lib/reviews";
+import { getAllFaqs } from "@/lib/faqs";
 import {
   branches,
   services,
@@ -12,9 +16,42 @@ import {
   topLocations,
 } from "@/lib/data";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const reviews = await getAllReviews();
+  const faqs = await getAllFaqs();
+
+  const avgRating =
+    reviews.length > 0
+      ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+      : null;
+
+  const faqJsonLd =
+    faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <main>
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink text-cream">
         <div
@@ -278,7 +315,6 @@ export default function Home() {
       </section>
 
       {/* Hotel Spa Partners */}
-      {/* Hotel Spa Partners */}
       <section className="mx-auto max-w-5xl px-6 py-20">
         <p className="text-sm uppercase tracking-[0.3em] text-brass">
           Premium Partners
@@ -389,6 +425,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reviews */}
+      {reviews.length > 0 && (
+        <section className="bg-cream-dim py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="text-center text-sm uppercase tracking-[0.3em] text-brass">
+              What Our Guests Say
+            </p>
+            <div className="mt-3 flex flex-col items-center gap-2">
+              <h2 className="font-display text-3xl text-ink md:text-4xl">
+                Guest Reviews
+              </h2>
+              {avgRating && (
+                <div className="flex items-center gap-2 text-sm text-charcoal/70">
+                  <span className="font-display text-lg text-ink">{avgRating}</span>
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <svg
+                        key={i}
+                        viewBox="0 0 20 20"
+                        fill={i <= Math.round(Number(avgRating)) ? "#FBBC04" : "#E0E0E0"}
+                        className="h-4 w-4"
+                      >
+                        <path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7L10 1.5z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span>({reviews.length} reviews)</span>
+                </div>
+              )}
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {reviews.slice(0, 6).map((review) => (
+                <GoogleReviewCard
+                  key={review.id}
+                  name={review.name}
+                  rating={review.rating}
+                  reviewText={review.reviewText}
+                  reviewDate={review.reviewDate}
+                  location={review.location}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <section className="mx-auto max-w-3xl px-6 py-20">
+          <p className="text-center text-sm uppercase tracking-[0.3em] text-brass">
+            Got Questions?
+          </p>
+          <h2 className="mt-3 text-center font-display text-3xl text-ink md:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          <div className="mt-10">
+            <FaqAccordion faqs={faqs} />
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section className="relative overflow-hidden bg-ink py-24 text-center text-cream">
         <div
@@ -422,6 +519,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main >
+    </main>
   );
 }
