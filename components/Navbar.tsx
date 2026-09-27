@@ -7,11 +7,13 @@ import { brand } from "@/lib/data";
 import Image from "next/image";
 
 const serviceLinks = [
-  { href: "/services/sandwich-massage", label: "Sandwich Massage" },
+  { href: "/services/swedish-massage", label: "Swedish Massage" },
+  { href: "/services/deep-tissue-massage", label: "Deep Tissue Massage" },
+  { href: "/services/aromatherapy-massage", label: "Aromatherapy Massage" },
+  { href: "/services/reflexology", label: "Reflexology" },
+  { href: "/services/couple-spa", label: "Couple Spa" },
+  { href: "/services/full-body-wellness-massage", label: "Full Body Wellness" },
   { href: "/services/hotel-home-spa", label: "Hotel & Home Spa" },
-  { href: "/services/full-body-massage", label: "Full Body Massage" },
-  { href: "/services/b2b-therapy", label: "B2B Therapy" },
-  { href: "/services/couple-massage", label: "Couple Massage in Delhi" },
 ];
 
 const outletLinks = [
@@ -24,7 +26,6 @@ const outletLinks = [
   { href: "/branches/green-park", label: "Spa in Green Park" },
 ];
 
-// Gallery and Contact removed from visible nav — pages still exist, just not linked here
 const simpleLinks = [
   { href: "/", label: "Home" },
   { href: "/pricing", label: "Our Pricing" },
@@ -303,7 +304,7 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <a    
+          <a
             href={`tel:${brand.phone.replace(/[^0-9+]/g, "")}`}
             className="mt-5 block rounded-full bg-ink px-6 py-3 text-center text-sm text-cream transition hover:bg-ink-soft"
           >

@@ -7,10 +7,62 @@ import { services, brand } from "@/lib/data";
 import { SITE_URL } from "@/lib/config";
 import { getWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
-
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
+
+// Keyword sets per service, from the SEO keyword sheet
+const keywordMap: Record<string, string[]> = {
+  "swedish-massage": [
+    "swedish massage Delhi",
+    "swedish massage near me",
+    "swedish massage benefits",
+    "full body swedish massage price",
+    "swedish massage therapy Delhi NCR",
+  ],
+  "deep-tissue-massage": [
+    "deep tissue massage Delhi",
+    "deep tissue massage near me",
+    "deep tissue massage for back pain",
+    "deep tissue massage price Delhi",
+    "best deep tissue massage Delhi NCR",
+  ],
+  "aromatherapy-massage": [
+    "aromatherapy massage Delhi",
+    "aromatherapy massage near me",
+    "aromatherapy massage benefits",
+    "essential oil massage Delhi NCR",
+    "stress relief aromatherapy spa",
+  ],
+  reflexology: [
+    "reflexology massage Delhi",
+    "foot reflexology near me",
+    "reflexology therapy benefits",
+    "foot massage spa Delhi NCR",
+    "reflexology center Delhi",
+  ],
+  "couple-spa": [
+    "couple spa Delhi",
+    "couple massage near me",
+    "couple spa Delhi NCR",
+    "romantic spa for couples Delhi",
+    "couple spa package price",
+  ],
+  "full-body-wellness-massage": [
+    "full body massage Delhi",
+    "full body massage near me",
+    "full body massage price Delhi",
+    "full body relaxation massage",
+    "best full body massage Delhi NCR",
+  ],
+  "hotel-home-spa": [
+    "home spa service Delhi",
+    "spa at home Delhi NCR",
+    "hotel spa service Delhi",
+    "massage therapist at home near me",
+    "home massage service Delhi price",
+  ],
+};
 
 export async function generateMetadata({
   params,
@@ -27,6 +79,7 @@ export async function generateMetadata({
   return {
     title: service.name,
     description,
+    keywords: keywordMap[slug] || [],
     alternates: {
       canonical: url,
     },
@@ -37,7 +90,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image.jpg", // TODO: ideally a service-specific photo
+          url: "/og-image.jpg",
           width: 1200,
           height: 630,
           alt: service.name,
@@ -70,8 +123,6 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const otherServices = services.filter((s) => s.slug !== service.slug).slice(0, 3);
-
-  // Parse "₹1,999" -> "1999" for schema price
   const numericPrice = service.price.replace(/[^0-9]/g, "");
 
   const jsonLd = {
@@ -117,8 +168,15 @@ export default async function ServicePage({
               {service.duration}
             </span>
             <span className="h-1 w-1 rounded-full bg-cream/30" />
-            <span className="font-display text-lg text-brass-light">
-              {service.price}
+            <span className="flex items-baseline gap-2">
+              {service.originalPrice && (
+                <span className="text-sm text-cream/40 line-through">
+                  {service.originalPrice}
+                </span>
+              )}
+              <span className="font-display text-lg text-brass-light">
+                {service.price}
+              </span>
             </span>
           </div>
         </div>
@@ -158,24 +216,21 @@ export default async function ServicePage({
         {/* Sticky booking card */}
         <aside className="h-fit md:sticky md:top-24">
           <div className="rounded-2xl border border-brass/25 bg-cream-dim p-7">
-            <p className="text-xs uppercase tracking-widest text-sage">
-              Duration
-            </p>
-            <p className="mt-1 font-display text-lg text-ink">
-              {service.duration}
-            </p>
+            <p className="text-xs uppercase tracking-widest text-sage">Duration</p>
+            <p className="mt-1 font-display text-lg text-ink">{service.duration}</p>
 
             <div className="my-5 h-px bg-charcoal/10" />
 
-            <p className="text-xs uppercase tracking-widest text-sage">
-              Price
-            </p>
-            <p className="mt-1 font-display text-3xl text-brass">
-              {service.price}
-            </p>
-            <p className="mt-1 text-xs text-charcoal/50">
-              May vary slightly by branch
-            </p>
+            <p className="text-xs uppercase tracking-widest text-sage">Price</p>
+            <div className="mt-1 flex items-baseline gap-2">
+              {service.originalPrice && (
+                <span className="text-sm text-charcoal/40 line-through">
+                  {service.originalPrice}
+                </span>
+              )}
+              <span className="font-display text-3xl text-brass">{service.price}</span>
+            </div>
+            <p className="mt-1 text-xs text-charcoal/50">May vary slightly by branch</p>
 
             <a
               href={`tel:${brand.phone.replace(/[^0-9+]/g, "")}`}
@@ -184,7 +239,7 @@ export default async function ServicePage({
               Call to Book This Service
             </a>
             <a
-               href={getWhatsAppUrl(whatsappMessages.service(service.name))}
+              href={getWhatsAppUrl(whatsappMessages.service(service.name))}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 block rounded-full border border-brass/40 px-6 py-3 text-center text-sm text-ink transition hover:bg-ink hover:text-cream"
@@ -223,7 +278,14 @@ export default async function ServicePage({
                 <p className="mt-1 text-xs uppercase tracking-widest text-sage">
                   {s.duration}
                 </p>
-                <p className="mt-3 font-display text-brass">{s.price}</p>
+                <div className="mt-3 flex items-baseline gap-2">
+                  {s.originalPrice && (
+                    <span className="text-xs text-charcoal/40 line-through">
+                      {s.originalPrice}
+                    </span>
+                  )}
+                  <span className="font-display text-brass">{s.price}</span>
+                </div>
               </Link>
             ))}
           </div>

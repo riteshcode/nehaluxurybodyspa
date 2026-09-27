@@ -118,57 +118,129 @@ export type Service = {
   name: string;
   duration: string;
   price: string;
+  originalPrice?: string; // NEW — strikethrough MRP shown before discounted price
   description: string;
   image: string;
 };
 
 export const services: Service[] = [
   {
-    slug: "sandwich-massage",
-    name: "Sandwich Massage",
+    slug: "full-body-wellness-massage",
+    name: "Full Body Wellness Massage",
     duration: "60 min",
+    originalPrice: "₹3,499",
     price: "₹2,999",
     description:
-      "A unique two-therapist massage technique that works on both sides of the body simultaneously.",
-    image: "/images/services/sandwich-massage.jpg",
-  },
-  {
-    slug: "hotel-home-spa",
-    name: "Hotel & Home Spa",
-    duration: "60 min",
-    price: "₹11,999",
-    description:
-      "Professional spa therapists available at your hotel or home across Delhi NCR.",
-    image: "/images/services/5-star-hotel-spa.jpg",
-  },
-  {
-    slug: "full-body-massage",
-    name: "Full Body Massage",
-    duration: "60 min",
-    price: "₹1,999",
-    description:
-      "A complete full-body massage using warm oils to release tension and restore balance.",
+      "A complete full-body relaxation massage combining warm oils and steady pressure to release tension from head to toe — our most popular all-round wellness ritual.",
     image: "/images/services/full-body-massage.jpg",
   },
   {
-    slug: "b2b-therapy",
-    name: "B2B Therapy",
+    slug: "swedish-massage",
+    name: "Swedish Massage",
     duration: "60 min",
-    price: "₹2,299",
+    originalPrice: "₹3,499",
+    price: "₹2,999",
     description:
-      "Body-to-body therapy performed by trained professionals in a private, comfortable setting.",
-    image: "/images/services/b2b-therapy.jpg",
+      "A classic full-body Swedish massage using long, gentle strokes to ease tension and improve circulation — ideal if you're new to massage therapy or simply want to unwind.",
+    image: "/images/services/swedish-massage.jpg",
   },
   {
-    slug: "couple-massage",
-    name: "Couple Massage in Delhi",
+    slug: "couple-spa",
+    name: "Couple Spa",
     duration: "60 min",
+    originalPrice: "₹5,999",
     price: "₹4,999",
     description:
-      "A shared wellness experience for two in a private suite, with massage and steam.",
+      "A shared, romantic spa experience for two in a private suite — side-by-side massage and steam, perfect for couples looking for quality time together.",
     image: "/images/services/couple-massage.jpg",
   },
+  {
+    slug: "deep-tissue-massage",
+    name: "Deep Tissue Massage",
+    duration: "60 min",
+    originalPrice: "₹3,499",
+    price: "₹2,999",
+    description:
+      "Targeted, firm-pressure massage that works through chronic muscle tension and knots — especially effective for back pain, stiff shoulders and tightness from long hours at a desk.",
+    image: "/images/services/deep-tissue-massage.jpg",
+  },
+  {
+    slug: "aromatherapy-massage",
+    name: "Aromatherapy Massage",
+    duration: "60 min",
+    originalPrice: "₹3,499",
+    price: "₹2,999",
+    description:
+      "A relaxing full-body massage using essential oils to ease stress and calm the mind — a gentle, sensory approach to stress relief and deep relaxation.",
+    image: "/images/services/aromatherapy-massage.jpg",
+  },
+  {
+    slug: "reflexology",
+    name: "Reflexology",
+    duration: "60 min",
+    originalPrice: "₹3,499",
+    price: "₹2,999",
+    description:
+      "Focused foot reflexology and pressure-point therapy designed to relieve fatigue, improve circulation and restore balance — a favourite for tired feet after travel or long days on your feet.",
+    image: "/images/services/reflexology.jpg",
+  },
+  {
+    slug: "hotel-home-spa",
+    name: "Hotel & Home Spa Service",
+    duration: "60 min",
+    price: "₹11,999",
+    description:
+      "Professional spa therapists available at your hotel room or home across Delhi NCR — no travel needed, just call or WhatsApp to book your session.",
+    image: "/images/services/5-star-hotel-spa.jpg",
+  },
 ];
+// export const services: Service[] = [
+//   {
+//     slug: "sandwich-massage",
+//     name: "Sandwich Massage",
+//     duration: "60 min",
+//     price: "₹2,999",
+//     description:
+//       "A unique two-therapist massage technique that works on both sides of the body simultaneously.",
+//     image: "/images/services/sandwich-massage.jpg",
+//   },
+//   {
+//     slug: "hotel-home-spa",
+//     name: "Hotel & Home Spa",
+//     duration: "60 min",
+//     price: "₹11,999",
+//     description:
+//       "Professional spa therapists available at your hotel or home across Delhi NCR.",
+//     image: "/images/services/5-star-hotel-spa.jpg",
+//   },
+//   {
+//     slug: "full-body-massage",
+//     name: "Full Body Massage",
+//     duration: "60 min",
+//     price: "₹1,999",
+//     description:
+//       "A complete full-body massage using warm oils to release tension and restore balance.",
+//     image: "/images/services/full-body-massage.jpg",
+//   },
+//   {
+//     slug: "b2b-therapy",
+//     name: "B2B Therapy",
+//     duration: "60 min",
+//     price: "₹2,299",
+//     description:
+//       "Body-to-body therapy performed by trained professionals in a private, comfortable setting.",
+//     image: "/images/services/b2b-therapy.jpg",
+//   },
+//   {
+//     slug: "couple-massage",
+//     name: "Couple Massage in Delhi",
+//     duration: "60 min",
+//     price: "₹4,999",
+//     description:
+//       "A shared wellness experience for two in a private suite, with massage and steam.",
+//     image: "/images/services/couple-massage.jpg",
+//   },
+// ];
 
 export const brand = {
   name: "Neha Luxury Body Spa",
@@ -186,13 +258,22 @@ export const brand = {
 };
 
 export const specialties = [
-  { title: "Foreigner Therapist", image: "/images/specialties/foreigner-therapist.jpg" },
-  { title: "5 Star Hotels Spa", image: "/images/specialties/5-star-hotel-spa.jpg" },
-  // { title: "Home Spa", image: "/images/specialties/home-spa.jpg" },
-  // { title: "Thai Massage", image: "/images/specialties/thai-massage.jpg" },
-  { title: "B2B Therapy", image: "/images/specialties/b2b-therapy.jpg" },
-  { title: "Full Body Massage", image: "/images/specialties/full-body-massage.jpg" },
+  { title: "Swedish Massage", image: "/images/services/swedish-massage.jpg", slug: "swedish-massage" },
+  { title: "Deep Tissue Massage", image: "/images/services/deep-tissue-massage.jpg", slug: "deep-tissue-massage" },
+  { title: "Aromatherapy", image: "/images/services/aromatherapy-massage.jpg", slug: "aromatherapy-massage" },
+  { title: "Reflexology", image: "/images/services/reflexology.jpg", slug: "reflexology" },
+  { title: "Couple Spa", image: "/images/services/couple-massage.jpg", slug: "couple-spa" },
+  { title: "Hotel & Home Spa", image: "/images/services/5-star-hotel-spa.jpg", slug: "hotel-home-spa" },
 ];
+
+// export const specialties = [
+//   { title: "Foreigner Therapist", image: "/images/specialties/foreigner-therapist.jpg" },
+//   { title: "5 Star Hotels Spa", image: "/images/specialties/5-star-hotel-spa.jpg" },
+//   // { title: "Home Spa", image: "/images/specialties/home-spa.jpg" },
+//   // { title: "Thai Massage", image: "/images/specialties/thai-massage.jpg" },
+//   { title: "B2B Therapy", image: "/images/specialties/b2b-therapy.jpg" },
+//   { title: "Full Body Massage", image: "/images/specialties/full-body-massage.jpg" },
+// ];
 
 export const pricingPackages = [
   {

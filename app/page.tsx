@@ -201,37 +201,48 @@ export default async function Home() {
       </section>
 
       {/* Specialties strip */}
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6">
-          {specialties.map((s) => (
-            <div
-              key={s.title}
-              className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-cream-dim transition hover:border-brass/40"
-            >
-              <BrandImage
-                alt={s.title}
-                ratio="square"
-                tone="light"
-                className="rounded-none rounded-t-2xl"
-                src={s.image}
-              />
-              <p className="p-3 text-center text-sm font-medium text-ink">
+  <section className="mx-auto max-w-6xl px-6 py-12">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6">
+      {specialties.map((s) => {
+        const service = services.find((sv) => sv.slug === s.slug);
+        return (
+          <Link
+            key={s.title}
+            href={`/services/${s.slug}`}
+            className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-cream-dim transition hover:border-brass/40 hover:shadow-sm"
+          >
+            <BrandImage
+              alt={s.title}
+              ratio="square"
+              tone="light"
+              className="rounded-none rounded-t-2xl"
+              src={s.image}
+            />
+            <div className="p-3 text-center">
+              <p className="text-sm font-medium text-ink transition group-hover:text-brass">
                 {s.title}
               </p>
+              {service && (
+                <p className="mt-1 text-xs text-charcoal/50">
+                  Starting {service.price}
+                </p>
+              )}
             </div>
-          ))}
-        </div>
-        <div className="mt-8 text-center">
-          <a
-            href={getWhatsAppUrl(whatsappMessages.general)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-full bg-ink px-7 py-3 text-sm text-cream transition hover:bg-ink-soft"
-          >
-            Chat on WhatsApp
-          </a>
-        </div>
-      </section>
+          </Link>
+        );
+      })}
+    </div>
+    <div className="mt-8 text-center">
+      <a
+        href={getWhatsAppUrl(whatsappMessages.general)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block rounded-full bg-ink px-7 py-3 text-sm text-cream transition hover:bg-ink-soft"
+      >
+        Chat on WhatsApp
+      </a>
+    </div>
+  </section>
 
       {/* Services preview */}
       <section className="mx-auto max-w-6xl px-6 py-20">
@@ -344,7 +355,7 @@ export default async function Home() {
       </section>
 
       {/* Hotel Spa Partners */}
-      <section className="mx-auto max-w-5xl px-6 py-20">
+      {/* <section className="mx-auto max-w-5xl px-6 py-20">
         <p className="text-sm uppercase tracking-[0.3em] text-brass">
           Premium Partners
         </p>
@@ -390,7 +401,7 @@ export default async function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Top Locations */}
       <section className="bg-cream-dim py-20">
@@ -418,7 +429,7 @@ export default async function Home() {
       </section>
 
       {/* Branches preview */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-sm uppercase tracking-[0.3em] text-brass">
             Visit Us
@@ -452,7 +463,7 @@ export default async function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Reviews */}
       {reviews.length > 0 && (

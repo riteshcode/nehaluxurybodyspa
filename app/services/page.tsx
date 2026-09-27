@@ -8,7 +8,14 @@ import { SITE_URL } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Explore body massage, couple spa, B2B therapy and other wellness rituals at Neha Luxury Body Spa, with transparent pricing.",
+    "Explore Swedish massage, deep tissue massage, aromatherapy, reflexology, couple spa and hotel & home spa services at Neha Luxury Body Spa, Delhi NCR.",
+  keywords: [
+    "wellness spa Delhi NCR",
+    "spa near me",
+    "best spa in Delhi",
+    "body massage center Delhi",
+    "spa and massage Delhi",
+  ],
   alternates: {
     canonical: `${SITE_URL}/services`,
   },
@@ -97,9 +104,14 @@ export default function ServicesPage() {
                     {s.description}
                   </p>
                 </div>
-                <p className="whitespace-nowrap font-display text-lg text-brass">
-                  {s.price}
-                </p>
+                <div className="whitespace-nowrap text-right">
+                  {s.originalPrice && (
+                    <p className="text-xs text-charcoal/40 line-through">
+                      {s.originalPrice}
+                    </p>
+                  )}
+                  <p className="font-display text-lg text-brass">{s.price}</p>
+                </div>
               </div>
             </Link>
           ))}
